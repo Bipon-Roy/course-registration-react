@@ -1,6 +1,6 @@
-const Cart = ({ selectedCourse, remainingTime, totalCreditHour }) => {
+const Cart = ({ selectedCourse, remainingTime, totalCost, totalCreditHour }) => {
     return (
-        <div className="mx-6 lg:mx-0 lg:w-[300px]">
+        <div className="mx-6 lg:mx-0 lg:w-[305px]">
             <div className=" py-6 bg-white rounded-xl px-6">
                 <h1 className="font-bold text-lg text-[#2F80ED] ">
                     Credit Hour Remaining {remainingTime} hr
@@ -20,7 +20,9 @@ const Cart = ({ selectedCourse, remainingTime, totalCreditHour }) => {
                         Total Credit Hour : {totalCreditHour}
                     </h3>
                     <div className="divider  mx-auto my-2"></div>
-                    <h3 className="text-[#111111bd] text-lg font-semibold ">Total Price : USD</h3>
+                    <h3 className="text-[#111111bd] text-lg font-semibold ">
+                        Total Price : {totalCost} USD
+                    </h3>
                 </div>
             </div>
         </div>
