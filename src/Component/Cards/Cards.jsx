@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+
 import Cart from "../Cart/Cart";
 const Cards = () => {
     const [cards, setCards] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState([]);
+    const [totalCreditHour, setTotalCreditHour] = useState(0);
+    const [remainingTime, setRemainingTime] = useState(0);
 
     useEffect(() => {
         fetch("./course.json")
@@ -14,13 +17,25 @@ const Cards = () => {
     }, []);
     const handleCart = (card) => {
         const isExist = selectedCourse.find((item) => item.id == card.id);
+        let creditHour = card.credit;
         if (isExist) {
             return alert("already booked");
         } else {
-            setSelectedCourse([...selectedCourse, card]);
+            selectedCourse.forEach((item) => {
+                creditHour = creditHour + item.credit;
+            });
+            const creditHourRemaining = 20 - creditHour;
+            if (creditHour > 20) {
+                {
+                    alert("No Credit Hours Left");
+                }
+            } else {
+                setRemainingTime(creditHourRemaining);
+                setTotalCreditHour(creditHour);
+                setSelectedCourse([...selectedCourse, card]);
+            }
         }
     };
-    console.log(selectedCourse);
     return (
         <div className="max-w-[1340px] mx-auto my-2 flex flex-col lg:flex-row gap-5">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-6 lg:mx-0">
@@ -60,7 +75,11 @@ const Cards = () => {
                 ))}
             </div>
             <div>
-                <Cart selectedCourse={selectedCourse}></Cart>
+                <Cart
+                    selectedCourse={selectedCourse}
+                    remainingTime={remainingTime}
+                    totalCreditHour={totalCreditHour}
+                ></Cart>
             </div>
         </div>
     );
