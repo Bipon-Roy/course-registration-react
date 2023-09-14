@@ -19,7 +19,7 @@ const Cards = () => {
             .then((data) => setCards(data));
     }, []);
     const handleCart = (card) => {
-        const isExist = selectedCourse.find((item) => item.id == card.id);
+        const isExist = selectedCourse.find((item) => item.id === card.id);
         let creditHour = card.credit;
         let price = card.price;
         if (isExist) {
@@ -30,9 +30,14 @@ const Cards = () => {
                 price = price + item.price;
             });
             const creditHourRemaining = 20 - creditHour;
+
+            if (creditHourRemaining < 0) {
+                toast("No Credit Hour Remaining");
+            }
+
             if (creditHour > 20) {
                 {
-                    toast("Credit Hours limit exceeded");
+                    toast("Total Credit Hours limit exceeded");
                 }
             } else {
                 setRemainingTime(creditHourRemaining);
@@ -42,7 +47,6 @@ const Cards = () => {
             }
         }
     };
-    console.log(selectedCourse);
     return (
         <div className="max-w-[1340px] mx-auto my-2 flex flex-col lg:flex-row gap-5">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-6 lg:mx-0">
