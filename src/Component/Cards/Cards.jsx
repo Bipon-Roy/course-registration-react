@@ -5,12 +5,22 @@ import { faDollarSign, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import Cart from "../Cart/Cart";
 const Cards = () => {
     const [cards, setCards] = useState([]);
+    const [selectedCourse, setSelectedCourse] = useState([]);
 
     useEffect(() => {
         fetch("./course.json")
             .then((res) => res.json())
             .then((data) => setCards(data));
     }, []);
+    const handleCart = (card) => {
+        const isExist = selectedCourse.find((item) => item.id == card.id);
+        if (isExist) {
+            return alert("already booked");
+        } else {
+            setSelectedCourse([...selectedCourse, card]);
+        }
+    };
+    console.log(selectedCourse);
     return (
         <div className="max-w-[1340px] mx-auto my-2 flex flex-col lg:flex-row gap-5">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-6 lg:mx-0">
@@ -40,14 +50,17 @@ const Cards = () => {
                                 Credit : {card.credit}hr
                             </p>
                         </div>
-                        <button className="btn bg-[#2F80ED] mb-5 text-white font-medium text-lg mx-6">
+                        <button
+                            className="btn bg-[#2F80ED] mb-5 text-white font-medium text-lg mx-6"
+                            onClick={() => handleCart(card)}
+                        >
                             Select
                         </button>
                     </div>
                 ))}
             </div>
             <div>
-                <Cart></Cart>
+                <Cart selectedCourse={selectedCourse}></Cart>
             </div>
         </div>
     );
