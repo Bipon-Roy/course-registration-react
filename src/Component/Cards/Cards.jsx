@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Cart from "../Cart/Cart";
 
 const Cards = () => {
@@ -21,7 +23,7 @@ const Cards = () => {
         let creditHour = card.credit;
         let price = card.price;
         if (isExist) {
-            return alert("already booked");
+            return toast("Course Already Taken");
         } else {
             selectedCourse.forEach((item) => {
                 creditHour = creditHour + item.credit;
@@ -30,7 +32,7 @@ const Cards = () => {
             const creditHourRemaining = 20 - creditHour;
             if (creditHour > 20) {
                 {
-                    alert("Credit hours can't be more than 20 hours");
+                    toast("Credit Hours limit exceeded");
                 }
             } else {
                 setRemainingTime(creditHourRemaining);
@@ -87,6 +89,7 @@ const Cards = () => {
                     totalCreditHour={totalCreditHour}
                 ></Cart>
             </div>
+            <ToastContainer />
         </div>
     );
 };
