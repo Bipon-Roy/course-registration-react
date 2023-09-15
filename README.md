@@ -29,6 +29,6 @@ const [totalCost, setTotalCost] = useState(0);
 
 - The totalCreditHour state was initialised with a value of '0' When a user adds a course, the value of the state is updated to calculate the total credit hours.
 
-- The remainingTime state was initialised with a value of '0' When a user adds a course, the value of the state is updated to calculate the remaining credit hours.
+- The remainingTime state was initialised with a value of '20' When a user adds a course, the value of the state is updated to calculate the remaining credit hours.
 
 - The totalCost state was initialised with a value of '0' When a user adds a course, the value of the state is updated to calculate the total cost.
