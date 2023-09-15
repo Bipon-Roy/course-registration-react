@@ -23,7 +23,7 @@ const [totalCreditHour, setTotalCreditHour] = useState(0);
 const [remainingTime, setRemainingTime] = useState(20);
 const [totalCost, setTotalCost] = useState(0);
 ```
-- The card state was initialised as an empty array. It was used to store the data fetched from a JSON file using the fetch API, and then it was updated with the course data once the data was fetched successfully.
+- The cards state was initialised as an empty array. It was used to store the data fetched from a JSON file using the fetch API, and then it was updated with the course data once the data was fetched successfully.
 
 - The selectedCourse state was initialised as an empty array. It was used to keep track of the courses that a user had selected to take. When a user adds a course to the cart, the selected course object is then updated to this array.
 
