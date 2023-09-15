@@ -10,7 +10,7 @@ const Cards = () => {
     const [cards, setCards] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState([]);
     const [totalCreditHour, setTotalCreditHour] = useState(0);
-    const [remainingTime, setRemainingTime] = useState(0);
+    const [remainingTime, setRemainingTime] = useState(20);
     const [totalCost, setTotalCost] = useState(0);
 
     useEffect(() => {
@@ -23,7 +23,11 @@ const Cards = () => {
         let creditHour = card.credit;
         let price = card.price;
         if (isExist) {
-            return toast("Course Already Taken");
+            return toast.info("Course Already Taken", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+            });
         } else {
             selectedCourse.forEach((item) => {
                 creditHour = creditHour + item.credit;
@@ -31,13 +35,13 @@ const Cards = () => {
             });
             const creditHourRemaining = 20 - creditHour;
 
-            if (creditHourRemaining < 0) {
-                toast("No Credit Hour Remaining");
-            }
-
             if (creditHour > 20) {
                 {
-                    toast("Total Credit Hours limit exceeded");
+                    toast.error("Credit Hour Limit Exceeded", {
+                        position: "top-right",
+                        autoClose: 2000,
+                        theme: "colored",
+                    });
                 }
             } else {
                 setRemainingTime(creditHourRemaining);
