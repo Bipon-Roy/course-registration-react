@@ -1,5 +1,14 @@
 import PropTypes from "prop-types";
-const Cart = ({ selectedCourse, remainingTime, totalCost, totalCreditHour }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRemove } from "@fortawesome/free-solid-svg-icons";
+
+const Cart = ({
+    selectedCourse,
+    remainingTime,
+    totalCost,
+    totalCreditHour,
+    handleRemoveFromCart,
+}) => {
     return (
         <div className="mx-6 lg:mx-0 lg:w-[305px]">
             <div className=" py-6 bg-white rounded-xl px-6">
@@ -11,7 +20,15 @@ const Cart = ({ selectedCourse, remainingTime, totalCost, totalCreditHour }) => 
                     <h1 className="font-bold text-lg text-[#1C1B1B] mb-4">Course Name</h1>
                     <ol className="list-decimal text-base font-semibold space-y-2 ml-4">
                         {selectedCourse.map((card, idx) => (
-                            <li key={idx}>{card.course_name}</li>
+                            <div key={idx} className="flex gap-1">
+                                <li>{card.course_name}</li>
+                                <button
+                                    className="text-red-600 text-lg"
+                                    onClick={() => handleRemoveFromCart(card)}
+                                >
+                                    <FontAwesomeIcon icon={faRemove} />
+                                </button>
+                            </div>
                         ))}
                     </ol>
                 </div>
@@ -34,5 +51,6 @@ Cart.propTypes = {
     remainingTime: PropTypes.number.isRequired,
     totalCost: PropTypes.number.isRequired,
     totalCreditHour: PropTypes.number.isRequired,
+    handleRemoveFromCart: PropTypes.func.isRequired,
 };
 export default Cart;
