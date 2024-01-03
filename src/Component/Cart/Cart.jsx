@@ -10,7 +10,7 @@ const Cart = ({
     handleRemoveFromCart,
 }) => {
     return (
-        <div className="mx-6 lg:mx-0 lg:w-[305px]">
+        <div className="mx-6 lg:mx-0 lg:w-[320px]">
             <div className=" py-6 bg-white rounded-xl px-6">
                 <h1 className="font-bold text-lg text-[#2F80ED] ">
                     Credit Hour Remaining {remainingTime} hr
