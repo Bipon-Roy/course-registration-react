@@ -53,16 +53,14 @@ const Cards = () => {
     };
 
     const handleRemoveFromCart = (card) => {
-        console.log(card);
         const remainingCart = selectedCourse.filter((item) => item.id !== card.id);
-        console.log(remainingTime, totalCost, totalCreditHour);
         setRemainingTime(remainingTime + card.credit);
         setTotalCost(totalCost - card.price);
         setTotalCreditHour(totalCreditHour - card.credit);
         setSelectedCourse(remainingCart);
     };
     return (
-        <div className="max-w-[1340px] mx-auto my-2 flex flex-col lg:flex-row gap-5">
+        <div className="max-w-[1340px] mx-auto my-2 flex flex-col-reverse lg:flex-row gap-5">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-6 lg:mx-0">
                 {cards.map((card) => (
                     <div key={card.id} className="card bg-base-100">
